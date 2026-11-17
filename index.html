@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UrbanMart Business Dashboard</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f3f5fa;color:#202943}
+header{background:#172554;color:white;padding:25px 5%}
+header h1{margin:0 0 8px}
+header p{margin:0;color:#dbeafe}
+main{max-width:1200px;margin:auto;padding:25px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px}
+.card,.panel{background:white;padding:20px;border-radius:12px;box-shadow:0 3px 12px #17255412}
+.card h3{font-size:14px;color:#64748b;margin:0 0 12px}
+.value{font-size:25px;font-weight:bold;color:#1d4ed8}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px;margin-top:20px}
+.panel h2{font-size:17px;margin-top:0}
+canvas{max-height:290px}
+footer{text-align:center;padding:25px;color:#64748b;font-size:13px}
+</style>
+</head>
+<body>
+<header>
+<h1>UrbanMart Business Intelligence Dashboard</h1>
+<p>AI-Powered Business Data Analysis | 2024</p>
+</header>
+
+<main>
+<div class="cards">
+<div class="card"><h3>Total Revenue</h3><div class="value">₹72.97 Lakh</div></div>
+<div class="card"><h3>Total Transactions</h3><div class="value">1,200</div></div>
+<div class="card"><h3>Unique Customers</h3><div class="value">1,074</div></div>
+<div class="card"><h3>Average Customer Rating</h3><div class="value">4.07 / 5</div></div>
+<div class="card"><h3>Repeat Purchase Rate</h3><div class="value">34.25%</div></div>
+<div class="card"><h3>Product Return Rate</h3><div class="value">7.83%</div></div>
+</div>
+
+<div class="grid">
+<div class="panel">
+<h2>Monthly Revenue (₹)</h2>
+<canvas id="monthlyChart"></canvas>
+</div>
+<div class="panel">
+<h2>Revenue by Product Category</h2>
+<canvas id="categoryChart"></canvas>
+</div>
+<div class="panel">
+<h2>Repeat Purchase by Customer Segment</h2>
+<canvas id="repeatChart"></canvas>
+</div>
+<div class="panel">
+<h2>Delivery Time and Customer Rating</h2>
+<canvas id="deliveryChart"></canvas>
+</div>
+</div>
+
+<div class="panel" style="margin-top:20px">
+<h2>Key Business Insights</h2>
+<ul>
+<li>Electronics is the highest revenue-generating category.</li>
+<li>September recorded the highest monthly revenue.</li>
+<li>Premium customers show the highest repeat-purchase rate.</li>
+<li>Customer ratings tend to decrease as delivery time increases.</li>
+<li>Electronics has the highest category return rate.</li>
+</ul>
+</div>
+</main>
+
+<footer>UrbanMart | AI-Powered Business Data Analysis Project</footer>
+
+<script>
+new Chart(document.getElementById('monthlyChart'),{
+type:'line',
+data:{labels:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep'],
+datasets:[{label:'Revenue',data:[804930,704368,590556,588288,937231,886678,823308,916156,1045586],
+borderColor:'#2563eb',backgroundColor:'#bfdbfe',fill:true,tension:0.3}]},
+options:{responsive:true,plugins:{legend:{display:false}}}
+});
+
+new Chart(document.getElementById('categoryChart'),{
+type:'bar',
+data:{labels:['Electronics','Home & Kitchen','Apparel','Sports','Beauty','Books'],
+datasets:[{label:'Revenue (₹)',data:[4215977,1290975,742218,509315,394751,143864],
+backgroundColor:['#2563eb','#0d9488','#f59e0b','#8b5cf6','#ec4899','#64748b']}]},
+options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false}}}
+});
+
+new Chart(document.getElementById('repeatChart'),{
+type:'bar',
+data:{labels:['Budget','Mid-Tier','Premium'],
+datasets:[{label:'Repeat Purchase (%)',data:[18.64,37.60,40.62],
+backgroundColor:['#93c5fd','#60a5fa','#2563eb']}]},
+options:{responsive:true,scales:{y:{beginAtZero:true,max:50}}}
+});
+
+new Chart(document.getElementById('deliveryChart'),{
+type:'line',
+data:{labels:['0–2 days','2–4 days','4–6 days','6–8 days','8+ days'],
+datasets:[{label:'Average Rating',data:[4.72,4.36,3.88,2.57,2.38],
+borderColor:'#0d9488',backgroundColor:'#99f6e4',fill:true,tension:0.3}]},
+options:{responsive:true,scales:{y:{beginAtZero:true,max:5}}}
+});
+</script>
+</body>
+</html>
